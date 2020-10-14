@@ -1,0 +1,44 @@
+<project>
+    <body>
+        <breadcrumbs>
+            <item name="Services" href="http://confluence.hq.branches.fundsaccess.eu/display/SVALLG/Microservices+bei+fundsaccess"/>
+            <item name="Blueprints" href="http://confluence.hq.branches.fundsaccess.eu/pages/viewpage.action?pageId=184352986"/>
+            <item name="TomEE" href=""/>
+        </breadcrumbs>
+        <links>
+            <!-- TODO Link zum JIRA-Projekt -->
+            <item name="JIRA" href="https://jira.hq.branches.fundsaccess.eu/browse/SVALLG"/>
+            <!-- TODO Link zum Confluence-Space -->
+            <item name="Confluence" href="http://confluence.hq.branches.fundsaccess.eu/display/SVALLG/Blueprint+Microservice+mit+Apache+TomEE+7"/>
+            <!-- TODO Link zum Jenkins-Job -->
+            <item name="Jenkins" href="https://vmjenk001.hq.branches.fundsaccess.eu/jenkins/job/services/job/blueprints/job/tomee/"/>
+            <!-- TODO Link zum Sonar-Projekt -->
+            <item name="SonarQube" href="https://vmsona001.hq.branches.fundsaccess.eu//overview?id=3343https://vmsona001.hq.branches.fundsaccess.eu//overview?id=3343"/>   
+        </links> 
+        <menu name="Überblick">
+            <item name="Einführung" href="index.html"></item>
+            <item name="Beispiele" href="docs/examples.html"></item>
+            <item name="Schnittstellenbeschreibung" href="docs/interface.html"></item>
+            <item name="Architektur" href="arc42/about-arc42.html" collapse="true">
+                <item name="Einführung und Ziele" href="arc42/01_introduction_and_goals.html"></item>
+                <item name="Randbedingungen" href="arc42/02_architecture_constraints.html"></item>
+                <item name="Kontextabgrenzung" href="arc42/03_system_scope_and_context.html"></item>
+                <item name="Lösungsstrategie" href="arc42/04_solution_strategy.html"></item>
+                <item name="Bausteinsicht" href="arc42/05_building_block_view.html"></item>
+                <item name="Laufzeitsicht" href="arc42/06_runtime_view.html"></item>
+                <item name="Verteilungssicht" href="arc42/07_deployment_view.html"></item>
+                <item name="Konzepte" href="arc42/08_concepts.html"></item>
+                <item name="Entwurfsentscheidungen" href="arc42/09_design_decisions.html"></item>
+                <item name="Qualitätsszenarien" href="arc42/10_quality_scenarios.html"></item>
+                <item name="Risiken" href="arc42/11_technical_risks.html"></item>
+                <item name="Glossar" href="arc42/12_glossary.html"></item>
+            </item>
+        </menu>
+        <menu ref="reports"/>
+    </body>
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+</project>

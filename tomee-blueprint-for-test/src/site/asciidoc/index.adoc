@@ -1,0 +1,6 @@
+# Über services :: blueprints :: tomee
+
+Von diesem Blueprint können auf Apache TomEE 7 basierte Microservices abgeleitet werden um sich im Folgenden
+auf die Lösung von Fachproblemen statt grundlegender Technologien konzentrieren zu können.
+
+image::umlimg/Blueprint.png[title="Ein PlantUML-Diagramm"]

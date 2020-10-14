@@ -1,0 +1,12 @@
+@startuml
+class Hello {
+  - int number
+  # String value
+  + method
+}
+
+class World {
+}
+
+Hello <|-- World
+@enduml

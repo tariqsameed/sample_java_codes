@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function login(){
+    	var rejectList = ["test.com"];
+    	var emailValue = document.getElementById("user-email").value; 
+    	var splitArray = emailValue.split('@'); // To Get Array
+
+    	if(rejectList.indexOf(splitArray[1]) >= 0)
+    	{
+    	// Means it has the rejected domains
+    		var el_up = document.getElementById("message");
+    		el_up.style["display"] = "block"; 
+    		return false;
+    	}
+    	
+        var data = new FormData();
+        data.append('email', document.getElementById("user-email").value);
+        data.append('password', document.getElementById("user-pass").value);
+        var xhr = new XMLHttpRequest();
+        // @TODO - CHANGE "server-dummy.txt" TO YOUR SERVER SCRIPT
+        xhr.open('POST', "/api/validate", true);
+        xhr.onload = function() {
+          if (xhr.status == 200) {
+            var response = JSON.parse(this.response);
+            // VALID
+            if (response.status) {
+              // @TODO - WHERE TO REDIRECT THE USER ON SIGN IN?
+               location.href = "/task/books";
+            }
+            // INVALID EMAIL/PASSWORD
+            else {
+              alert(response.message);
+            }
+          } else {
+            alert("SERVER ERROR!");
+          }
+        };
+        xhr.send(data);
+        return false;
+      }
+    </script>
+    <style>
+      #login-form {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f2f2f2;
+      }
+      #login-form h1 {
+        text-align: center;
+        margin: 0 0 10px 0;
+      }
+      #login-form input {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 10px;
+        padding: 10px;
+      }
+      #login-form input[type=submit] {
+        border: 0;
+        background: #4367c4;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="login-form" onsubmit="return login()">
+      <h1>LOGIN</h1>
+      <div id=message style="display:none;">Email is not valid</div>
+      <input type="email" placeholder="Email Address" id="user-email" required/>
+      <input type="password" placeholder="Password" id="user-pass" required/>
+      <input type="submit" value="Sign In"/>
+    </form>
+  </body>
+</html>

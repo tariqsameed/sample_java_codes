@@ -1,0 +1,14 @@
+com\check24\cosine\InvalidDataException.class
+com\check24\database\BooksSimilarityPopulator.class
+com\check24\cosine\SimilarityCalculator.class
+com\check24\data\Books.class
+com\check24\books\helper\BooksHelper.class
+com\check24\data\BooksSimilarity.class
+com\check24\controller\rest\api\Services.class
+com\check24\data\BooksViews.class
+com\check24\parser\BooksParser.class
+com\check24\parser\BooksViewsParser.class
+com\check24\Application.class
+com\check24\controller\web\BooksController.class
+com\check24\data\BooksDetail.class
+com\check24\database\BooksDatabasePopulator.class

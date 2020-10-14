@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<style>
+	a {
+		border-bottom: 1px solid black;
+		padding-bottom: 5px;
+	}
+	h4 {
+		margin: 0;
+	}
+	th, td {
+	  border-bottom: 1px solid #ddd;
+	}
+	.table-row {
+		height: 50px;
+	}
+	.id-column {
+	    height: 50px;
+	    width: 50px;
+	    background-color: deepskyblue;
+	    text-align: center;
+	    color: white;
+	    font-weight: bold;
+	}
+	.main-column {
+		padding-left: 20px;
+	}
+	.inner-row {
+		margin-top: 5px;
+		width:600px
+	}
+	.more-info-column {
+		padding-left: 20px;
+	}
+	.custom-button {
+		background-color: deepskyblue;
+		border: none;
+		color: white;
+		height: 30px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+	}
+</style>
+	<h4>Bookstore IT Books Details</h4>
+	<hr>
+	<table id="book_table"></table>
+	<hr/>
+	<a>Customers were also interested in:</a>
+	<hr/>
+	<table id="similarity_table"></table>
+
+	<!-- Include the JQuery library -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+	function getSearchParameters() {
+	      var prmstr = window.location.search.substr(1);
+	      return prmstr != null && prmstr != "" ? transformToAssocArray(prmstr) : {};
+	}
+
+	function transformToAssocArray( prmstr ) {
+	    var params = {};
+	    var prmarr = prmstr.split("&");
+	    for ( var i = 0; i < prmarr.length; i++) {
+	        var tmparr = prmarr[i].split("=");
+	        params[tmparr[0]] = tmparr[1];
+	    }
+	    return params;
+	}
+		//When the page has loaded.
+		$(document).ready(function() {
+			var params = getSearchParameters();
+							//Perform Ajax request.
+							$.ajax({
+										url : '/api/books/similarity?book='+params.book,
+										type : 'get',
+										success : function(response) {
+										 var brHTML = '<tr class="table-row"><td class="id-column">'
+													+ response.id
+													+ '</td><td class="main-column"><div>'
+													+ response.name
+													+ '</div><div class="inner-row"><b>'
+													+ response.price
+													+ ' €</b></div><div class="inner-row">'
+													+ response.details
+													+ '</div></td></tr>';
+													$('#book_table').append(brHTML);
+											
+											var similar = response.similar;
+											var trHTML = '';
+											$
+													.each(
+															similar,
+															function(i, item) {
+																trHTML += '<tr class="table-row"><td class="id-column">'
+																		+ item.id
+																		+ '</td><td class="main-column"><div>'
+																		+ item.name
+																		+ '</div><div class="inner-row"><b>'
+																		+ item.price
+																		+ ' €</b></div></td>'
+																		+ '<td class="more-info-column"><button type="button" class="custom-button" onclick="moreInfo(\''
+																		+ item.id
+																		+ '\')">More >></button></td></tr>';
+															});
+											$('#similarity_table').append(trHTML);
+										},
+										error : function(xhr, ajaxOptions,
+												thrownError) {
+											var errorMsg = 'Ajax request failed: '
+													+ xhr.responseText;
+											$('#similarity_table').html(errorMsg);
+										}
+									});
+						});
+
+		function moreInfo(id) {
+			console.log(id);
+			location.href = "/task/details?book="+id;
+		}
+	</script>
+</body>
+</html>

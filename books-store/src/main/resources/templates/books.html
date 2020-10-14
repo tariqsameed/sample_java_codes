@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<style>
+	h4 {
+		margin: 0;
+	}
+	th, td {
+	  border-bottom: 1px solid #ddd;
+	}
+	.table-row {
+		height: 50px;
+	}
+	.id-column {
+	    height: 50px;
+	    width: 50px;
+	    background-color: deepskyblue;
+	    text-align: center;
+	    color: white;
+	    font-weight: bold;
+	}
+	.main-column {
+		padding-left: 20px;
+	}
+	.inner-row {
+		margin-top: 5px;
+	}
+	.more-info-column {
+		padding-left: 20px;
+	}
+	.custom-button {
+		background-color: deepskyblue;
+		border: none;
+		color: white;
+		height: 30px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+	}
+</style>
+	<h4>Bookstore IT Books</h4>
+	<hr>
+	<table id="records_table"></table>
+
+	<!-- Include the JQuery library -->
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		//When the page has loaded.
+		$(document).ready(function() {
+							//Perform Ajax request.
+							$.ajax({
+										url : '/api/books',
+										type : 'get',
+										success : function(response) {
+											//If the success function is execute,
+											//then the Ajax request was successful.
+											//Add the data we received in our Ajax
+											//request to the "content" div.
+											var trHTML = '';
+											$
+													.each(
+															response,
+															function(i, item) {
+																trHTML += '<tr class="table-row"><td class="id-column">'
+																		+ item.id
+																		+ '</td><td class="main-column"><div>'
+																		+ item.name
+																		+ '</div><div class="inner-row"><b>'
+																		+ item.price
+																		+ ' €</b></div></td>'
+																		+ '<td class="more-info-column"><button type="button" class="custom-button" onclick="moreInfo(\''
+																		+ item.id
+																		+ '\')">More >></button></td></tr>';
+															});
+											$('#records_table').append(trHTML);
+										},
+										error : function(xhr, ajaxOptions,
+												thrownError) {
+											var errorMsg = 'Ajax request failed: '
+													+ xhr.responseText;
+											$('#content').html(errorMsg);
+										}
+									});
+						});
+
+		function moreInfo(id) {
+			console.log(id);
+			location.href = "/task/details?book="+id;
+		}
+	</script>
+</body>
+</html>
